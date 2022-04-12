@@ -17,5 +17,5 @@ struct {{class_name}} {
     private let pageName: Name
     init(pageName: Name) {
         self.pageName = pageName
-}
+    }
 }
