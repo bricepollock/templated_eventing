@@ -21,35 +21,27 @@ let templateFilesHome = homeDirectory + "/templates"
 let outputFilesHome = homeDirectory + "/output"
 
 do {
-    // Get all event files and convert them into json
-    let eventFiles = try fileManager.contentsOfDirectory(atPath: eventFilesHome)
-    let eventFilePaths = eventFiles.map { eventFilesHome + "/" + $0}
-    for path in eventFilePaths {
-        print("Found \(path)")
-    }
-    
-    let jsonFiles: [Any] = try eventFilePaths.compactMap {
-        let data = try Data(contentsOf: URL(fileURLWithPath: $0))        
-        return try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? NSDictionary
-    }
-    let testFile = eventFiles.first!
-    let testJSON = jsonFiles.first!
-    print(testJSON)
-    
-    // Get all templates to apply to event files
-    let templateFilesPaths = try fileManager.contentsOfDirectory(atPath: templateFilesHome).map { templateFilesHome + "/" + $0}
-    print(templateFilesPaths)
-    let swiftTemplatePath = templateFilesPaths.first!
-    print(swiftTemplatePath)
-    let template = try Template(path: swiftTemplatePath)
-    let rendering = try template.render(testJSON)
-    print(rendering)
-    
-    // Write template outputs to disk
-    let outputFilePath = outputFilesHome + "/" + String(testFile.dropLast(".json".count)) + ".swift"
-    print(outputFilePath)
-    try rendering.write(toFile: outputFilePath, atomically: true, encoding: .unicode)
-    
+    try fileManager.contentsOfDirectory(atPath: eventFilesHome)
+        .forEach { eventFile in
+            let eventFilePath = eventFilesHome + "/" + eventFile
+            // Get all event files and convert them into json
+            let data = try Data(contentsOf: URL(fileURLWithPath: eventFilePath))
+            let json =  try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? NSDictionary
+
+            // Get all templates to apply to event files
+            try fileManager.contentsOfDirectory(atPath: templateFilesHome)
+                .map { templateFile in templateFilesHome + "/" + templateFile }
+                .forEach { templateFilePath in
+                    let template = try Template(path: templateFilePath)
+                    let rendering = try template.render(json)
+                    print(rendering)
+                    
+                    // Write template outputs to disk
+                    let outputFilePath = outputFilesHome + "/" + String(eventFile.dropLast(".json".count)) + ".swift"
+                    print(outputFilePath)
+                    try rendering.write(toFile: outputFilePath, atomically: true, encoding: .unicode)
+                }
+        }
 } catch {
     print("Encountered error: \(error)")
 }
