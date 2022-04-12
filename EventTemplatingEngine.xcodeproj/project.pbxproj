@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		408267E12805ED9800B29A05 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408267E02805ED9800B29A05 /* main.swift */; };
 		408267F72806027C00B29A05 /* Mustache in Frameworks */ = {isa = PBXBuildFile; productRef = 408267F62806027C00B29A05 /* Mustache */; };
+		408267FF28060B7A00B29A05 /* String+camel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408267FE28060B7A00B29A05 /* String+camel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		408267F22805FABE00B29A05 /* page_viewed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_viewed.json; sourceTree = "<group>"; };
 		408267F42805FB4B00B29A05 /* swift.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = swift.txt; sourceTree = "<group>"; };
 		408267FD2806083B00B29A05 /* output */ = {isa = PBXFileReference; lastKnownFileType = text; path = output; sourceTree = SOURCE_ROOT; };
+		408267FE28060B7A00B29A05 /* String+camel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+camel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				408267E02805ED9800B29A05 /* main.swift */,
+				408267FE28060B7A00B29A05 /* String+camel.swift */,
 				408267F12805FABE00B29A05 /* events */,
 				408267EF2805FABE00B29A05 /* templates */,
 			);
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				408267E12805ED9800B29A05 /* main.swift in Sources */,
+				408267FF28060B7A00B29A05 /* String+camel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,15 @@ do {
             let eventFilePath = eventFilesHome + "/" + eventFile
             // Get all event files and convert them into json
             let data = try Data(contentsOf: URL(fileURLWithPath: eventFilePath))
-            let json =  try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? NSDictionary
+            var json =  try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as! [String: Any]
+            
+            // Perform json operations such as adding new template key-values
+            let updatedNames = (json["names"] as! [[String: Any]]).map { nameDictionary -> [String: Any] in
+                var newDictionary = nameDictionary
+                newDictionary["case_name"] = ((nameDictionary["name"] as? String) ?? "").replacingOccurrences(of: ".", with: "_").camelCased(with: "_")
+                return newDictionary
+            }
+            json["names"] = updatedNames
 
             // Get all templates to apply to event files
             try fileManager.contentsOfDirectory(atPath: templateFilesHome)

@@ -1,3 +1,6 @@
 struct {{class_name}} {
-
+    enum Name: String {
+    {{#names}}  case {{case_name}} = {{name}}
+    {{/names}}
+    }
 }
