@@ -28,9 +28,10 @@
 		408267DD2805ED9800B29A05 /* EventTemplatingEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventTemplatingEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		408267E02805ED9800B29A05 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		408267F22805FABE00B29A05 /* page_viewed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_viewed.json; sourceTree = "<group>"; };
-		408267F42805FB4B00B29A05 /* swift.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = swift.txt; sourceTree = "<group>"; };
-		408267FD2806083B00B29A05 /* output */ = {isa = PBXFileReference; lastKnownFileType = text; path = output; sourceTree = SOURCE_ROOT; };
+		408267F42805FB4B00B29A05 /* ios.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ios.txt; sourceTree = "<group>"; };
 		408267FE28060B7A00B29A05 /* String+camel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+camel.swift"; sourceTree = "<group>"; };
+		4082680028060E4C00B29A05 /* android.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = android.txt; sourceTree = "<group>"; };
+		40826801280610B400B29A05 /* output */ = {isa = PBXFileReference; lastKnownFileType = text; path = output; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				408267DF2805ED9800B29A05 /* EventTemplatingEngine */,
-				408267FD2806083B00B29A05 /* output */,
 				408267DE2805ED9800B29A05 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +69,7 @@
 				408267FE28060B7A00B29A05 /* String+camel.swift */,
 				408267F12805FABE00B29A05 /* events */,
 				408267EF2805FABE00B29A05 /* templates */,
+				40826801280610B400B29A05 /* output */,
 			);
 			path = EventTemplatingEngine;
 			sourceTree = "<group>";
@@ -76,7 +77,8 @@
 		408267EF2805FABE00B29A05 /* templates */ = {
 			isa = PBXGroup;
 			children = (
-				408267F42805FB4B00B29A05 /* swift.txt */,
+				408267F42805FB4B00B29A05 /* ios.txt */,
+				4082680028060E4C00B29A05 /* android.txt */,
 			);
 			path = templates;
 			sourceTree = SOURCE_ROOT;

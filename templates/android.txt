@@ -1,0 +1,13 @@
+enum class {{class_name}}{{parameter_capitalized}}(val name: String) {
+    {{#cases}}  {{case_name_caps}}("{{name}}"),
+    {{/cases}}
+}
+
+data class {{class_name}}(val pageName: {{class_name}}{{parameter_capitalized}}) {
+    val name: String =
+    val parameters: [String: Any]? {
+        return [
+            "{{parameter}}": self.pageName.name
+        ]
+    }
+}
