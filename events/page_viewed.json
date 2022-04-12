@@ -1,8 +1,10 @@
 {
-  "type": "page_viewed",
-  "class_name": "PageViewedEvent",
-  "names": [
-      {"name": "logged_out.sign_in_access_code"},
-      {"name": "support.chat"}
+    "type": "page_viewed",
+    "class_name": "PageViewedEvent",
+    "parameter": "page_name",
+    "cases": [
+        {"name": "application.sign_in"},
+        {"name": "application.settings"},
+        {"name": "settings.notifications"}
   ]
 }

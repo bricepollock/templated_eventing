@@ -1,6 +1,21 @@
 struct {{class_name}} {
     enum Name: String {
-    {{#names}}  case {{case_name}} = {{name}}
-    {{/names}}
+    {{#cases}}  case {{case_name}} = "{{name}}"
+    {{/cases}}
     }
+    
+    var name: String {
+        return "{{type}}"
+    }
+    
+    var parameters: [String: Any]? {
+        return [
+            "{{parameter}}": self.pageName.rawValue
+        ]
+    }
+    
+    private let pageName: Name
+    init(pageName: Name) {
+        self.pageName = pageName
+}
 }

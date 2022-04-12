@@ -29,12 +29,12 @@ do {
             var json =  try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as! [String: Any]
             
             // Perform json operations such as adding new template key-values
-            let updatedNames = (json["names"] as! [[String: Any]]).map { nameDictionary -> [String: Any] in
+            let updatedNames = (json["cases"] as! [[String: Any]]).map { nameDictionary -> [String: Any] in
                 var newDictionary = nameDictionary
                 newDictionary["case_name"] = ((nameDictionary["name"] as? String) ?? "").replacingOccurrences(of: ".", with: "_").camelCased(with: "_")
                 return newDictionary
             }
-            json["names"] = updatedNames
+            json["cases"] = updatedNames
 
             // Get all templates to apply to event files
             try fileManager.contentsOfDirectory(atPath: templateFilesHome)
@@ -42,11 +42,9 @@ do {
                 .forEach { templateFilePath in
                     let template = try Template(path: templateFilePath)
                     let rendering = try template.render(json)
-                    print(rendering)
                     
                     // Write template outputs to disk
                     let outputFilePath = outputFilesHome + "/" + String(eventFile.dropLast(".json".count)) + ".swift"
-                    print(outputFilePath)
                     try rendering.write(toFile: outputFilePath, atomically: true, encoding: .unicode)
                 }
         }
