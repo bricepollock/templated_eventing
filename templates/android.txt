@@ -4,7 +4,7 @@ enum class {{class_name}}{{parameter_capitalized}}(val name: String) {
 }
 
 data class {{class_name}}(val pageName: {{class_name}}{{parameter_capitalized}}) {
-    val name: String =
+    val name: String = "{{type}}"
     val parameters: [String: Any]? {
         return [
             "{{parameter}}": self.pageName.name
