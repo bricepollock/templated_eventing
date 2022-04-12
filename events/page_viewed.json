@@ -1,5 +1,6 @@
 {
   "type": "page_viewed",
+  "class_name": "PageViewedEvent",
   "names": [
     "support.chat"    
   ]

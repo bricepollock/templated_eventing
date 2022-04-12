@@ -8,19 +8,22 @@
 import Foundation
 import Mustache
 
-let fileManager = FileManager.default
-let documentDir = fileManager.urls(for: .userDirectory, in: .allDomainsMask).first!
-let homeDir = fileManager.homeDirectoryForCurrentUser
-print(homeDir)
-
+// CHANGE THIS VALUE TO WHERE YOU CLONED REPO
 let homePathComponents = "/src/tmp/templated_eventing"
+// --
+
+let fileManager = FileManager.default
+let homeDir = fileManager.homeDirectoryForCurrentUser
+
 let homeDirectory = homeDir.relativePath + homePathComponents
-let eventFiles = homeDirectory + "/events"
-let templateFiles = homeDirectory + "/templates"
-print(eventFiles)
+let eventFilesHome = homeDirectory + "/events"
+let templateFilesHome = homeDirectory + "/templates"
+let outputFilesHome = homeDirectory + "/output"
 
 do {
-    let eventFilePaths = try fileManager.contentsOfDirectory(atPath: eventFiles).map { eventFiles + "/" + $0}
+    // Get all event files and convert them into json
+    let eventFiles = try fileManager.contentsOfDirectory(atPath: eventFilesHome)
+    let eventFilePaths = eventFiles.map { eventFilesHome + "/" + $0}
     for path in eventFilePaths {
         print("Found \(path)")
     }
@@ -29,18 +32,26 @@ do {
         let data = try Data(contentsOf: URL(fileURLWithPath: $0))        
         return try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? NSDictionary
     }
+    let testFile = eventFiles.first!
     let testJSON = jsonFiles.first!
+    print(testJSON)
     
-    let templateFilesPaths = try fileManager.contentsOfDirectory(atPath: templateFiles).map { templateFiles + "/" + $0}
+    // Get all templates to apply to event files
+    let templateFilesPaths = try fileManager.contentsOfDirectory(atPath: templateFilesHome).map { templateFilesHome + "/" + $0}
     print(templateFilesPaths)
     let swiftTemplatePath = templateFilesPaths.first!
+    print(swiftTemplatePath)
     let template = try Template(path: swiftTemplatePath)
     let rendering = try template.render(testJSON)
     print(rendering)
     
+    // Write template outputs to disk
+    let outputFilePath = outputFilesHome + "/" + String(testFile.dropLast(".json".count)) + ".swift"
+    print(outputFilePath)
+    try rendering.write(toFile: outputFilePath, atomically: true, encoding: .unicode)
+    
 } catch {
     print("Encountered error: \(error)")
-    // failed to read directory – bad permissions, perhaps?
 }
 
 

@@ -28,6 +28,7 @@
 		408267E02805ED9800B29A05 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		408267F22805FABE00B29A05 /* page_viewed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_viewed.json; sourceTree = "<group>"; };
 		408267F42805FB4B00B29A05 /* swift.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = swift.txt; sourceTree = "<group>"; };
+		408267FC2806063100B29A05 /* output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = output; path = EventTemplatingEngine/output; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 				408267E02805ED9800B29A05 /* main.swift */,
 				408267F12805FABE00B29A05 /* events */,
 				408267EF2805FABE00B29A05 /* templates */,
+				408267FC2806063100B29A05 /* output */,
 			);
 			path = EventTemplatingEngine;
 			sourceTree = "<group>";
