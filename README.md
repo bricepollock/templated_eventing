@@ -1,1 +1,1 @@
-# templated_eventing
+# A templating engine for cross platform eventing
